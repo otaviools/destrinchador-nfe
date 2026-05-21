@@ -11,7 +11,7 @@ useHead({
   }
 })
 
-const title = 'Destrincha NFe'
+const title = 'Supp | Destrinchar NFe'
 const description = 'O destrinchador da Supporte.'
 
 useSeoMeta({
