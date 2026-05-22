@@ -7,8 +7,8 @@ useHead({
   }
 })
 
-const title = 'Supp | Destrinchar NFe'
-const description = 'O destrinchador da Supporte.'
+const title = 'Destrinchar NF-e'
+const description = 'O destrinchador'
 
 useSeoMeta({
   title,

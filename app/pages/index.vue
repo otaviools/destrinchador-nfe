@@ -15,7 +15,7 @@ const validacao = computed(() => {
     }
   }
 
-  // 2
+  // 2.
   if (valor.length < 44) {
     return {
       valido: false,
@@ -25,7 +25,7 @@ const validacao = computed(() => {
     }
   }
 
-  // 3
+  // 3.
   if (valor.length > 44) {
     return {
       valido: false,
@@ -54,8 +54,8 @@ const consultarNota = () => {
   <div
     class="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-start justify-center gap-6 px-4 py-8 text-gray-900 dark:text-white"
   >
-    <h1 class="font-titulo text-5xl font-bold text-gray-900 dark:text-white">
-      Destrinchador de NF-e
+    <h1 class="font-titulo text-5xl font-medium text-gray-900 dark:text-white">
+      destrinchador de NF-e
     </h1>
 
     <UAlert
