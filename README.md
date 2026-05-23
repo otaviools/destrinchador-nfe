@@ -1,6 +1,6 @@
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 ## Development Server
