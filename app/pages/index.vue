@@ -5,7 +5,7 @@ const router = useRouter()
 const validacao = computed(() => {
   const valor = notaFiscal.value.trim()
 
-  // 1.
+  // 1. Verificar se contém apenas números
   if (valor && !/^\d+$/.test(valor)) {
     return {
       valido: false,
@@ -15,7 +15,7 @@ const validacao = computed(() => {
     }
   }
 
-  // 2.
+  // 2. Menor que 44
   if (valor.length < 44) {
     return {
       valido: false,
@@ -25,7 +25,7 @@ const validacao = computed(() => {
     }
   }
 
-  // 3.
+  // 3. Maior que 44
   if (valor.length > 44) {
     return {
       valido: false,
