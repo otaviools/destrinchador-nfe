@@ -19,7 +19,7 @@ const validacao = computed(() => {
   if (valor.length < 44) {
     return {
       valido: false,
-      mensagem: `Chave incompleta. Faltam ${44 - valor.length} dígitos (digitados: ${valor.length}/44).`,
+      mensagem: `Chave incompleta. Digitados: ${valor.length}/44).`,
       icone: 'i-lucide-shield-alert',
       cor: 'warning' as const
     }
@@ -29,7 +29,7 @@ const validacao = computed(() => {
   if (valor.length > 44) {
     return {
       valido: false,
-      mensagem: `Chave excedente. Excesso de ${valor.length - 44} dígitos (digitados: ${valor.length}/44).`,
+      mensagem: `Chave em excesso. Digitados: ${valor.length}/44).`,
       icone: 'i-lucide-shield-alert',
       cor: 'error' as const
     }
@@ -38,7 +38,7 @@ const validacao = computed(() => {
   // 4. Chave Valida
   return {
     valido: true,
-    mensagem: 'Chave NF-e válida, pronta para consulta.',
+    mensagem: 'Chave NF-e válida.',
     icone: 'i-lucide-check',
     cor: 'success' as const
   }
