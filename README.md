@@ -1,14 +1,15 @@
 
 ```bash
-npm install --legacy-peer-deps
+pnpm install 
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
 
 ```bash
-npm run dev
+pnpm nuxi prepare
 ```
+
+```bash
+pnpm dev 
+```
+Start the development server on `http://localhost:3000`:
 
 
