@@ -51,6 +51,7 @@ type LinhaMatriz = {
   objeto: string
   valorObjeto: string
   resultadoHumanizado: string
+  [key: string]: string
 }
 
 type RowCellContext = {
@@ -65,7 +66,7 @@ type TableColumn<T> = {
   cell: (context: RowCellContext) => ReturnType<typeof h>
 }
 
-const columns: TableColumn<LinhaMatriz>[] = [
+const columns: any[] = [
   {
     accessorKey: 'titulo',
     header: 'Título',
@@ -208,15 +209,128 @@ watchEffect(() => {
   <div
     class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-6 md:gap-8 md:px-8 md:py-8 dark:text-white"
   >
-    <div
-      v-if="dataInvertida.length > 0"
-      class="w-full overflow-x-auto rounded-xl border border-gray-200 shadow-2xl dark:border-neutral-800"
-    >
-      <UTable
-        :data="dataInvertida"
-        :columns="columns"
-        class="min-w-600px w-full bg-gray-100 text-gray-900 transition-colors duration-300 md:min-w-full dark:bg-neutral-900 dark:text-neutral-200"
-      />
+    <div v-if="dataInvertida.length > 0" class="w-full">
+      <div class="flex flex-col gap-4 text-gray-900 md:hidden dark:text-neutral-200">
+        <div
+          class="rounded-xl border border-gray-200 bg-gray-100 p-5 shadow-md dark:border-neutral-800 dark:bg-neutral-900"
+        >
+          <h3
+            class="text-primary mb-3 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider uppercase dark:border-neutral-800"
+          >
+            Identificação da Nota
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                >Número</span
+              >
+              <span class="text-sm font-medium">{{ dataInvertida[0]?.resultadoHumanizado }}</span>
+            </div>
+            <div>
+              <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                >Série</span
+              >
+              <span class="text-sm font-medium">{{ dataInvertida[1]?.resultadoHumanizado }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="rounded-xl border border-gray-200 bg-gray-100 p-5 shadow-md dark:border-neutral-800 dark:bg-neutral-900"
+        >
+          <h3
+            class="text-primary mb-3 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider uppercase dark:border-neutral-800"
+          >
+            Emitente (Origem)
+          </h3>
+          <div class="flex flex-col gap-3">
+            <div>
+              <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                >CNPJ da Empresa</span
+              >
+              <span class="text-primary font-mono text-sm font-medium break-all">{{
+                dataInvertida[3]?.resultadoHumanizado
+              }}</span>
+            </div>
+            <div>
+              <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                >Estado (UF)</span
+              >
+              <span class="text-sm font-medium">{{ dataInvertida[5]?.resultadoHumanizado }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="rounded-xl border border-gray-200 bg-gray-100 p-5 shadow-md dark:border-neutral-800 dark:bg-neutral-900"
+        >
+          <h3
+            class="text-primary mb-3 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider uppercase dark:border-neutral-800"
+          >
+            Emissão e Padrão
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                >Mês/Ano</span
+              >
+              <span class="text-sm font-medium">{{ dataInvertida[4]?.resultadoHumanizado }}</span>
+            </div>
+            <div>
+              <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                >Modelo</span
+              >
+              <span class="text-sm font-medium">{{ dataInvertida[2]?.resultadoHumanizado }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="rounded-xl border border-gray-200 bg-gray-100 p-5 shadow-md dark:border-neutral-800 dark:bg-neutral-900"
+        >
+          <h3
+            class="text-primary mb-3 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider uppercase dark:border-neutral-800"
+          >
+            Chave e Segurança
+          </h3>
+          <div class="flex flex-col gap-3">
+            <div>
+              <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                >Tipo de Emissão</span
+              >
+              <span class="text-sm font-medium">{{ dataInvertida[6]?.resultadoHumanizado }}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                  >Código Secreto</span
+                >
+                <span class="font-mono text-sm font-medium">{{
+                  dataInvertida[7]?.resultadoHumanizado
+                }}</span>
+              </div>
+              <div>
+                <span class="block text-xs font-semibold text-gray-500 dark:text-neutral-400"
+                  >Dígito Verificador</span
+                >
+                <span class="font-mono text-sm font-medium text-orange-400">{{
+                  dataInvertida[8]?.resultadoHumanizado
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="hidden w-full overflow-hidden rounded-xl border border-gray-200 shadow-2xl md:block dark:border-neutral-800"
+      >
+        <UTable
+          :data="dataInvertida"
+          :columns="columns"
+          class="w-full bg-gray-100 text-gray-900 transition-colors duration-300 dark:bg-neutral-900 dark:text-neutral-200"
+        />
+      </div>
     </div>
 
     <UAlert
