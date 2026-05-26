@@ -5,37 +5,15 @@ const router = useRouter()
 const validacao = computed(() => {
   const valor = notaFiscal.value.trim()
 
-  // 1. Verificar se contém apenas números
-  if (valor && !/^\d+$/.test(valor)) {
-    return {
-      valido: false,
-      mensagem: 'A chave NF-e deve conter apenas números.',
-      icone: 'i-lucide-shield-alert',
-      cor: 'error' as const
-    }
-  }
-
-  // 2. Menor que 44
   if (valor.length < 44) {
     return {
       valido: false,
-      mensagem: `Chave incompleta. Digitados: ${valor.length}/44).`,
+      mensagem: `Chave incompleta. Digitados: ${valor.length}/44.`,
       icone: 'i-lucide-shield-alert',
       cor: 'warning' as const
     }
   }
 
-  // 3. Maior que 44
-  if (valor.length > 44) {
-    return {
-      valido: false,
-      mensagem: `Chave em excesso. Digitados: ${valor.length}/44).`,
-      icone: 'i-lucide-shield-alert',
-      cor: 'error' as const
-    }
-  }
-
-  // 4. Chave Valida
   return {
     valido: true,
     mensagem: 'Chave NF-e válida.',
@@ -43,6 +21,7 @@ const validacao = computed(() => {
     cor: 'success' as const
   }
 })
+
 const consultarNota = () => {
   if (validacao.value.valido) {
     router.push(`/${notaFiscal.value.trim()}`)
@@ -67,7 +46,15 @@ const consultarNota = () => {
     />
 
     <div class="flex w-full flex-col items-stretch gap-4 sm:flex-row sm:items-center">
-      <UInput v-model="notaFiscal" class="w-full flex-1" size="xl" placeholder="Chave NF-e" />
+      <UInput
+        v-model="notaFiscal"
+        class="w-full flex-1"
+        size="xl"
+        placeholder="Chave NF-e"
+        maxlength="44"
+        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+        @input="notaFiscal = notaFiscal.replace(/\D/g, '')"
+      />
 
       <UButton
         class="cursor-pointer justify-center"
