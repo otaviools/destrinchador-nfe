@@ -205,13 +205,19 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="mx-auto flex w-full max-w-5xl flex-col gap-8 px-8 py-8 dark:text-white">
-    <UTable
+  <div
+    class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-6 md:gap-8 md:px-8 md:py-8 dark:text-white"
+  >
+    <div
       v-if="dataInvertida.length > 0"
-      :data="dataInvertida"
-      :columns="columns"
-      class="overflow-hidden rounded-xl border border-gray-200 bg-gray-100 text-gray-900 shadow-2xl transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
-    />
+      class="w-full overflow-x-auto rounded-xl border border-gray-200 shadow-2xl dark:border-neutral-800"
+    >
+      <UTable
+        :data="dataInvertida"
+        :columns="columns"
+        class="min-w-600px w-full bg-gray-100 text-gray-900 transition-colors duration-300 md:min-w-full dark:bg-neutral-900 dark:text-neutral-200"
+      />
+    </div>
 
     <UAlert
       v-else
@@ -219,9 +225,15 @@ watchEffect(() => {
       variant="subtle"
       icon="i-lucide-shield-alert"
       description="A chave NF-e deve conter 44 números. Verifique se a chave foi digitada corretamente."
+      class="w-full"
     />
 
-    <UButton size="xl" color="primary" class="w-fit cursor-pointer" @click="$router.push('/')">
+    <UButton
+      size="xl"
+      color="primary"
+      class="w-full cursor-pointer justify-center sm:w-fit"
+      @click="$router.push('/')"
+    >
       Voltar
     </UButton>
   </div>

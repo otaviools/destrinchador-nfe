@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { usePreferredDark } from '@vueuse/core'
-
 const isDark = usePreferredDark()
+
 const favicon = computed(() => (isDark.value ? '/favicon-dark.ico' : '/favicon-light.ico'))
 
 const title = 'destrinchar NF-e'
