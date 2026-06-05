@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { main } from '#build/ui'
+
 const notaFiscal = ref('43230707385111000102555030007659731240866593')
 const router = useRouter()
 
@@ -30,7 +32,7 @@ const consultarNota = () => {
 </script>
 
 <template>
-  <div
+  <main
     class="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-start justify-center gap-6 px-4 py-8 text-gray-900 dark:text-white"
   >
     <h1 class="font-titulo text-3xl font-medium text-gray-900 sm:text-5xl dark:text-white">
@@ -45,7 +47,7 @@ const consultarNota = () => {
       :description="validacao.mensagem"
     />
 
-    <div class="flex w-full flex-col items-stretch gap-4 sm:flex-row sm:items-center">
+    <section class="flex w-full flex-col items-stretch gap-4 sm:flex-row sm:items-center">
       <UInput
         v-model="notaFiscal"
         class="w-full flex-1"
@@ -64,6 +66,6 @@ const consultarNota = () => {
       >
         Consultar
       </UButton>
-    </div>
-  </div>
+    </section>
+  </main>
 </template>
