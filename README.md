@@ -16,7 +16,7 @@ O projeto foi construído com foco em alta performance, usabilidade e otimizaç�
 ### 1. Clonar o repositório
 ```bash
 git clone 
-cd destrinchar-nfe
+cd destrinchador-nfe
 ```
 ### 2. Executar
 ```bash
