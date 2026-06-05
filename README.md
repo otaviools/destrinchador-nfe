@@ -17,9 +17,10 @@ O projeto foi construído com foco em alta performance, usabilidade e otimizaç�
 ```bash
 git clone [https://github.com/seu-usuario/destrinchar-nfe.git](https://github.com/seu-usuario/destrinchar-nfe.git)
 cd destrinchar-nfe
-
+```
+### 2. Executar
 ```bash
-pnpm install 
+pnpm install
 ```
 
 ```bash
