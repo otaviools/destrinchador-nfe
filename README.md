@@ -1,24 +1,24 @@
-# ⚡ Destrinchar NF-e
+# Destrinchar NF-e
 
-Uma aplicação web moderna e minimalista desenvolvida para extrair, organizar e analisar dados de Notas Fiscais Eletrônicas (NF-e). 
-O projeto foi construído com foco em alta performance, usabilidade e otimização total de SEO de acordo com o Google Lighthouse.
-
-
-## 🚀 Tecnologias Utilizadas
-
-* **Nuxt 4** – Framework Vue.js para aplicação rápida e SSR (Server-Side Rendering).
-* **Nuxt UI / Tailwind CSS** – Design system moderno, limpo e com suporte nativo a tema escuro.
-* **TypeScript / JavaScript** – Lógica de manipulação de dados robusta e tipada.
+A modern and minimalist web application developed to extract, organize, and analyze data from Electronic Invoices (NF-e).
+The project was built with a focus on high performance, usability, and full SEO optimization according to Google Lighthouse.
 
 
-## 🛠️ Como Executar o Projeto Localmente
+## Tecnologias Utilizadas
 
-### 1. Clonar o repositório
+* **Nuxt 4** – Vue.js framework for fast application and SSR (Server-Side Rendering).
+* **Nuxt UI / Tailwind CSS** – Modern, clean design system with native dark theme support.
+* **TypeScript / JavaScript** – Robust, typed data manipulation logic.
+
+
+## How to Run the Project Locally
+
+### 1. Clone the repository
 ```bash
 git clone 
 cd destrinchador-nfe
 ```
-### 2. Executar
+### 2. To execute
 ```bash
 pnpm install
 ```
