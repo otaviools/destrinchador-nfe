@@ -35,10 +35,6 @@ const consultarNota = () => {
   <main
     class="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-start justify-center gap-6 px-4 py-8 text-gray-900 dark:text-white"
   >
-    <h1 class="font-titulo text-3xl font-medium text-gray-900 sm:text-5xl dark:text-white">
-      Destrinchador de NF-e
-    </h1>
-
     <UAlert
       class="w-full"
       :color="validacao.cor"
@@ -52,7 +48,7 @@ const consultarNota = () => {
         v-model="notaFiscal"
         class="w-full flex-1"
         size="xl"
-        placeholder="Chave NF-e"
+        placeholder="Cole aqui sua chave Nfe"
         maxlength="44"
         onkeypress="return event.charCode >= 48 && event.charCode <= 57"
         @input="notaFiscal = notaFiscal.replace(/\D/g, '')"
