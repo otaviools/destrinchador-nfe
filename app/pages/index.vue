@@ -32,36 +32,38 @@ const consultarNota = () => {
 </script>
 
 <template>
-  <main
-    class="mx-auto flex min-h-screen w-full max-w-2xl flex-col items-start justify-center gap-6 px-4 py-8 text-gray-900 dark:text-white"
-  >
-    <UAlert
-      class="w-full"
-      :color="validacao.cor"
-      variant="subtle"
-      :icon="validacao.icone"
-      :description="validacao.mensagem"
-    />
+  <div class="flex h-screen flex-col overflow-hidden">
+    <main class="flex flex-1 items-center justify-center">
+      <section class="m-4 flex w-full max-w-2xl flex-col gap-2 md:gap-3">
+        <UAlert
+          class="w-full"
+          :color="validacao.cor"
+          variant="subtle"
+          :icon="validacao.icone"
+          :description="validacao.mensagem"
+        />
+        <div class="flex flex-col gap-4 md:flex-row md:items-center">
+          <UInput
+            v-model="notaFiscal"
+            class="w-full"
+            size="xl"
+            placeholder="Cole aqui sua chave Nfe"
+            maxlength="44"
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+            @input="notaFiscal = notaFiscal.replace(/\D/g, '')"
+          />
 
-    <section class="flex w-full flex-col items-stretch gap-4 sm:flex-row sm:items-center">
-      <UInput
-        v-model="notaFiscal"
-        class="w-full flex-1"
-        size="xl"
-        placeholder="Cole aqui sua chave Nfe"
-        maxlength="44"
-        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-        @input="notaFiscal = notaFiscal.replace(/\D/g, '')"
-      />
-
-      <UButton
-        class="cursor-pointer justify-center"
-        :disabled="!validacao.valido"
-        size="xl"
-        @click="consultarNota"
-      >
-        Consultar
-      </UButton>
-    </section>
-  </main>
+          <UButton
+            class="cursor-pointer justify-center"
+            :disabled="!validacao.valido"
+            icon="lucide-rocket"
+            size="xl"
+            @click="consultarNota"
+          >
+            Consultar
+          </UButton>
+        </div>
+      </section>
+    </main>
+  </div>
 </template>
