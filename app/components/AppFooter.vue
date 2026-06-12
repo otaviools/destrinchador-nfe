@@ -1,44 +1,13 @@
-<script lang="ts" setup>
-import type { NavigationMenuItem } from '@nuxt/ui'
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <div class="h-100dvh">
-    <template>
-      <UFooter>
-        <template #left>
-          <p class="text-muted text-sm">Otávio © Todos os direitos reservados.</p>
-        </template>
-
-        <template #right>
-          <UButton
-            icon="i-simple-icons-discord"
-            color="neutral"
-            variant="ghost"
-            to="https://go.nuxt.com/discord"
-            target="_blank"
-            aria-label="Discord"
-          />
-          <UButton
-            icon="i-simple-icons-x"
-            color="neutral"
-            variant="ghost"
-            to="https://go.nuxt.com/x"
-            target="_blank"
-            aria-label="X"
-          />
-          <UButton
-            icon="i-simple-icons-github"
-            color="neutral"
-            variant="ghost"
-            to="https://github.com/nuxt/nuxt"
-            target="_blank"
-            aria-label="GitHub"
-          />
-        </template>
-      </UFooter>
-    </template>
-  </div>
+  <template>
+    <UFooter>
+      <template #center>
+        <p class="text-muted text-sm">Otávio © Todos os direitos reservados.</p>
+      </template>
+    </UFooter>
+  </template>
 </template>
 
 <style></style>

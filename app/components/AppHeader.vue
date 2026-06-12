@@ -1,10 +1,18 @@
 <script lang="ts" setup>
+import { header } from '#build/ui'
 import type { NavigationMenuItem } from '@nuxt/ui'
 </script>
 
 <template>
-  <div>
-    <UHeader>
+  <header
+    class="sticky top-0 z-50 w-full border-b border-gray-200 bg-gray-50 backdrop-blur dark:border-gray-950 dark:bg-gray-700"
+  >
+    <UHeader
+      :ui="{
+        toggle: 'hidden',
+        root: 'h-14 min-h-0 py-2'
+      }"
+    >
       <template #title>
         <p class="text-lg font-bold">destrinchar NF-e</p>
       </template>
@@ -23,7 +31,7 @@ import type { NavigationMenuItem } from '@nuxt/ui'
         </UTooltip>
       </template>
     </UHeader>
-  </div>
+  </header>
 </template>
 
 <style></style>
