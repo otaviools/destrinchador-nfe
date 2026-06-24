@@ -204,13 +204,6 @@ watchEffect(() => {
     class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-6 md:gap-8 md:px-8 md:py-8 dark:text-white"
   >
     <section v-if="data.length > 0" class="w-full">
-      <UCard class="shadow-xs">
-        <template #header>
-          <div class="flex items-center gap-2 text-xs md:text-base">
-            <span class="font-semibold">Nota:</span>
-            <span class="text-primary">{{ notaFiscal }}</span>
-          </div>
-        </template>
         <UTable :data="data" :ui="{ separator: 'hidden', th: 'py-1 text-primary' }" />
       </UCard>
     </section>
