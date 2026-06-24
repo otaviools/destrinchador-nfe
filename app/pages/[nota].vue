@@ -46,7 +46,6 @@ const mapeamentoTpEmis: Record<string, string> = {
 }
 
 type LinhaMatriz = {
-  id: string
   titulo: string
   objeto: string
   valorObjeto: string
@@ -71,7 +70,11 @@ const columns: any[] = [
     accessorKey: 'titulo',
     header: 'Título',
     cell: ({ row }: RowCellContext) =>
-      h('span', { class: 'font-semibold dark:text-gray-300 text-gray-900' }, row.getValue('titulo'))
+      h(
+        'span',
+        { class: 'font-semibold dark:text-gray-300 !text-blue-500' },
+        row.getValue('titulo')
+      )
   },
   {
     accessorKey: 'objeto',
@@ -133,63 +136,54 @@ const destrinchar = () => {
 
   data.value = [
     {
-      id: '1',
       titulo: 'Nota Fiscal',
       objeto: 'nNF',
       valorObjeto: numeroBruto,
       resultadoHumanizado: numeroFormatado
     },
     {
-      id: '2',
       titulo: 'Série da NF-e',
       objeto: 'serie',
       valorObjeto: serieBruta,
       resultadoHumanizado: serieFormatada
     },
     {
-      id: '3',
       titulo: 'Modelo da NF-e',
       objeto: 'mod',
       valorObjeto: modelo,
       resultadoHumanizado: modelo
     },
     {
-      id: '4',
       titulo: 'CNPJ',
       objeto: 'CNPJ',
       valorObjeto: cnpjBruto,
       resultadoHumanizado: cnpjFormatado
     },
     {
-      id: '5',
       titulo: 'Data Emissão',
       objeto: 'AAMM',
       valorObjeto: `${ano}${mes}`,
       resultadoHumanizado: dataEmissao
     },
     {
-      id: '6',
       titulo: 'UF (Estado)',
       objeto: 'cUF',
       valorObjeto: codigoUF,
       resultadoHumanizado: ufSigla
     },
     {
-      id: '7',
       titulo: 'Tipo de Emissão',
       objeto: 'tpEmis',
       valorObjeto: tipoEmissaoCodigo,
       resultadoHumanizado: tipoEmissaoTexto
     },
     {
-      id: '8',
       titulo: 'Código Aleatório',
       objeto: 'cNF',
       valorObjeto: codigoAleatorio,
       resultadoHumanizado: codigoAleatorio
     },
     {
-      id: '9',
       titulo: 'Dígito Verificador',
       objeto: 'cDV',
       valorObjeto: dv,
@@ -210,7 +204,6 @@ watchEffect(() => {
     class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-6 md:gap-8 md:px-8 md:py-8 dark:text-white"
   >
     <section v-if="data.length > 0" class="w-full">
-      <UCard title="Nota Destrinchada">
         <UTable :data="data" :ui="{ separator: 'hidden', th: 'py-1 text-primary' }" />
       </UCard>
     </section>

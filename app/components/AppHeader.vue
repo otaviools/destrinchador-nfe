@@ -14,7 +14,7 @@ import type { NavigationMenuItem } from '@nuxt/ui'
       }"
     >
       <template #title>
-        <p class="text-lg font-bold">destrinchar NF-e</p>
+        <p class="text-lg font-bold">destrinchador-NFe</p>
       </template>
 
       <template #right>
