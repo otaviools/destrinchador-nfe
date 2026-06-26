@@ -1,8 +1,16 @@
 <script setup lang="ts">
 const route = useRoute()
-const notaFiscal = computed(() => {
-  return (route.params.nota || '') as string
-})
+const router = useRouter()
+const notaFiscal = computed(() => (route.params.nota || '') as string)
+const notaFiscalInput = ref((route.params.nota || '') as string)
+import type { BreadcrumbItem } from '@nuxt/ui'
+
+watch(
+  () => route.params.nota,
+  (novaNota) => {
+    notaFiscalInput.value = (novaNota || '') as string
+  }
+)
 
 const mapeamentoUF: Record<string, string> = {
   11: 'RO',
@@ -46,10 +54,10 @@ const mapeamentoTpEmis: Record<string, string> = {
 }
 
 type LinhaMatriz = {
-  titulo: string
-  objeto: string
-  valorObjeto: string
-  resultadoHumanizado: string
+  Título: string
+  XML: string
+  Valor: string
+  Resultado: string
   [key: string]: string
 }
 
@@ -136,67 +144,131 @@ const destrinchar = () => {
 
   data.value = [
     {
-      titulo: 'Nota Fiscal',
-      objeto: 'nNF',
-      valorObjeto: numeroBruto,
-      resultadoHumanizado: numeroFormatado
+      Título: 'Nota Fiscal',
+      XML: 'nNF',
+      Valor: numeroBruto,
+      Resultado: numeroFormatado
     },
     {
-      titulo: 'Série da NF-e',
-      objeto: 'serie',
-      valorObjeto: serieBruta,
-      resultadoHumanizado: serieFormatada
+      Título: 'Série da NF-e',
+      XML: 'serie',
+      Valor: serieBruta,
+      Resultado: serieFormatada
     },
     {
-      titulo: 'Modelo da NF-e',
-      objeto: 'mod',
-      valorObjeto: modelo,
-      resultadoHumanizado: modelo
+      Título: 'Modelo da NF-e',
+      XML: 'mod',
+      Valor: modelo,
+      Resultado: modelo
     },
     {
-      titulo: 'CNPJ',
-      objeto: 'CNPJ',
-      valorObjeto: cnpjBruto,
-      resultadoHumanizado: cnpjFormatado
+      Título: 'CNPJ',
+      XML: 'CNPJ',
+      Valor: cnpjBruto,
+      Resultado: cnpjFormatado
     },
     {
-      titulo: 'Data Emissão',
-      objeto: 'AAMM',
-      valorObjeto: `${ano}${mes}`,
-      resultadoHumanizado: dataEmissao
+      Título: 'Data Emissão',
+      XML: 'AAMM',
+      Valor: `${ano}${mes}`,
+      Resultado: dataEmissao
     },
     {
-      titulo: 'UF (Estado)',
-      objeto: 'cUF',
-      valorObjeto: codigoUF,
-      resultadoHumanizado: ufSigla
+      Título: 'UF (Estado)',
+      XML: 'cUF',
+      Valor: codigoUF,
+      Resultado: ufSigla
     },
     {
-      titulo: 'Tipo de Emissão',
-      objeto: 'tpEmis',
-      valorObjeto: tipoEmissaoCodigo,
-      resultadoHumanizado: tipoEmissaoTexto
+      Título: 'Tipo de Emissão',
+      XML: 'tpEmis',
+      Valor: tipoEmissaoCodigo,
+      Resultado: tipoEmissaoTexto
     },
     {
-      titulo: 'Código Aleatório',
-      objeto: 'cNF',
-      valorObjeto: codigoAleatorio,
-      resultadoHumanizado: codigoAleatorio
+      Título: 'Código Aleatório',
+      XML: 'cNF',
+      Valor: codigoAleatorio,
+      Resultado: codigoAleatorio
     },
     {
-      titulo: 'Dígito Verificador',
-      objeto: 'cDV',
-      valorObjeto: dv,
-      resultadoHumanizado: dv
+      Título: 'Dígito Verificador',
+      XML: 'cDV',
+      Valor: dv,
+      Resultado: dv
     }
   ]
 }
 
-watchEffect(() => {
-  if (notaFiscal.value && notaFiscal.value.replace(/\D/g, '').length === 44) {
-    destrinchar()
+watch(
+  () => notaFiscal.value,
+  (novaNota) => {
+    if (novaNota && novaNota.replace(/\D/g, '').length === 44) {
+      destrinchar()
+    } else {
+      data.value = []
+    }
+  },
+  { immediate: true }
+)
+
+const validacaoInput = computed(() => {
+  const valor = notaFiscalInput.value.trim()
+
+  if (valor.length < 44) {
+    return {
+      valido: false,
+      mensagem: `Chave incompleta. Digitados: ${valor.length}/44.`,
+      icone: 'i-lucide-shield-alert',
+      cor: 'warning' as const
+    }
+  }
+
+  return {
+    valido: true,
+    mensagem: 'Chave NF-e válida.',
+    icone: 'i-lucide-check',
+    cor: 'success' as const
   }
 })
+
+const validacao = computed(() => {
+  const valor = notaFiscal.value.trim()
+
+  if (valor.length < 44) {
+    return {
+      valido: false,
+      mensagem: `Chave incompleta. Digitados: ${valor.length}/44.`,
+      icone: 'i-lucide-shield-alert',
+      cor: 'warning' as const
+    }
+  }
+
+  return {
+    valido: true,
+    mensagem: 'Chave NF-e válida.',
+    icone: 'i-lucide-check',
+    cor: 'success' as const
+  }
+})
+
+const consultarNota = () => {
+  if (validacaoInput.value.valido) {
+    router.push(`/${notaFiscalInput.value.trim()}`)
+  }
+}
+const items = ref<BreadcrumbItem[]>([
+  {
+    label: 'Voltar',
+    icon: 'lucide-step-back',
+    to: '/'
+  },
+  {
+    label: 'Nota',
+    icon: 'lucide-notebook-text',
+    to: ''
+  }
+])
 </script>
 
 <template>
@@ -204,6 +276,31 @@ watchEffect(() => {
     class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-6 md:gap-8 md:px-8 md:py-8 dark:text-white"
   >
     <section v-if="data.length > 0" class="w-full">
+      <UCard class="shadow-xs">
+        <template #header>
+          <div class="flex items-center justify-between gap-2 text-xs md:text-base">
+            <UBreadcrumb class="px-4" :items="items" />
+            <div class="flex items-center gap-2">
+              <UInput
+                v-model="notaFiscalInput"
+                class="w-100"
+                size="lg"
+                placeholder="Destrinchar outra NFe"
+                maxlength="44"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                @input="notaFiscalInput = notaFiscalInput.replace(/\D/g, '')"
+              />
+              <UButton
+                class="cursor-pointer justify-center"
+                :disabled="!validacaoInput.valido"
+                size="lg"
+                @click="consultarNota"
+              >
+                Consultar
+              </UButton>
+            </div>
+          </div>
+        </template>
         <UTable :data="data" :ui="{ separator: 'hidden', th: 'py-1 text-primary' }" />
       </UCard>
     </section>
@@ -216,14 +313,5 @@ watchEffect(() => {
       description="A chave NF-e deve conter 44 números. Verifique se a chave foi digitada corretamente."
       class="w-full"
     />
-
-    <UButton
-      size="xl"
-      color="primary"
-      class="w-full cursor-pointer justify-center sm:w-fit"
-      @click="$router.push('/')"
-    >
-      Voltar
-    </UButton>
   </main>
 </template>
