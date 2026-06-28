@@ -279,8 +279,8 @@ const items = ref<BreadcrumbItem[]>([
       <UCard class="shadow-xs">
         <template #header>
           <div class="flex items-center justify-between gap-2 text-xs md:text-base">
-            <UBreadcrumb class="px-4" :items="items" />
-            <div class="flex items-center gap-2">
+            <UBreadcrumb class="hidden md:flex" :items="items" />
+            <div class="hidden items-center gap-2 md:flex">
               <UInput
                 v-model="notaFiscalInput"
                 class="w-100"
@@ -301,7 +301,7 @@ const items = ref<BreadcrumbItem[]>([
             </div>
           </div>
         </template>
-        <UTable :data="data" :ui="{ separator: 'hidden', th: 'py-1 text-primary' }" />
+        <UTable :data="data" :ui="{ separator: 'hidden', th: 'py-1 text-primary', td: 'py-3' }" />
       </UCard>
     </section>
 
