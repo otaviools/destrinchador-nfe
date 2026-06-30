@@ -18,7 +18,7 @@ import type { NavigationMenuItem } from '@nuxt/ui'
       </template>
 
       <template #right>
-        <UColorModeButton />
+        <UColorModeSwitch />
         <UTooltip arrow :delay-duration="300" text="Repositório">
           <UButton
             color="neutral"

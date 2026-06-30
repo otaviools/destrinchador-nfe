@@ -75,47 +75,39 @@ type TableColumn<T> = {
 
 const columns: any[] = [
   {
-    accessorKey: 'titulo',
+    accessorKey: 'Título',
     header: 'Título',
     cell: ({ row }: RowCellContext) =>
-      h(
-        'span',
-        { class: 'font-semibold dark:text-gray-300 !text-blue-500' },
-        row.getValue('titulo')
-      )
+      h('span', { class: 'font-normal text-black dark:text-gray-300' }, row.getValue('Título'))
   },
   {
-    accessorKey: 'objeto',
-    header: 'Objeto (XML)',
+    accessorKey: 'XML',
+    header: 'XML',
     cell: ({ row }: RowCellContext) =>
       h(
         'code',
         {
           class:
-            'px-1.5 py-0.5 rounded bg-neutral dark:text-gray-400 text-gray-900 font-mono text-xs border border-gray-800'
+            'px-1.5 py-0.5 rounded dark:text-primary dark:border-neutral-700 text-gray-900 font-mono text-xs border border-primary'
         },
-        row.getValue('objeto')
+        row.getValue('XML')
       )
   },
   {
-    accessorKey: 'valorObjeto',
-    header: 'Valor do Objeto (Bruto)',
+    accessorKey: 'Valor',
+    header: 'Valor',
     cell: ({ row }: RowCellContext) =>
       h(
         'span',
         { class: 'font-mono dark:text-gray-400 text-gray-500 text-sm' },
-        row.getValue('valorObjeto')
+        row.getValue('Valor')
       )
   },
   {
-    accessorKey: 'resultadoHumanizado',
-    header: 'Resultado Humanizado',
+    accessorKey: 'Resultado',
+    header: 'Resultado',
     cell: ({ row }: RowCellContext) =>
-      h(
-        'span',
-        { class: 'font-medium text-orange-400 text-sm' },
-        row.getValue('resultadoHumanizado')
-      )
+      h('span', { class: 'font-normal text-black dark:text-white ' }, row.getValue('Resultado'))
   }
 ]
 
@@ -279,11 +271,15 @@ const items = ref<BreadcrumbItem[]>([
       <UCard class="shadow-xs">
         <template #header>
           <div class="flex items-center justify-between gap-2 text-xs md:text-base">
-            <UBreadcrumb class="hidden md:flex" :items="items" />
+            <UBreadcrumb
+              :ui="{ linkLeadingIcon: 'size-4', separatorIcon: 'size-3.5' }"
+              class="hidden md:flex"
+              :items="items"
+            />
             <div class="hidden items-center gap-2 md:flex">
               <UInput
                 v-model="notaFiscalInput"
-                class="w-100"
+                class="w-96"
                 size="lg"
                 placeholder="Destrinchar outra NFe"
                 maxlength="44"
@@ -301,7 +297,11 @@ const items = ref<BreadcrumbItem[]>([
             </div>
           </div>
         </template>
-        <UTable :data="data" :ui="{ separator: 'hidden', th: 'py-1 text-primary', td: 'py-3' }" />
+        <UTable
+          :data="data"
+          :columns="columns"
+          :ui="{ separator: 'hidden', th: 'py-1 text-primary', td: 'py-2' }"
+        />
       </UCard>
     </section>
 
