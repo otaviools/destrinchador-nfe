@@ -279,8 +279,8 @@ const items = ref<BreadcrumbItem[]>([
             <div class="hidden items-center gap-2 md:flex">
               <UInput
                 v-model="notaFiscalInput"
-                class="w-96"
-                size="lg"
+                class="w-99"
+                size="md"
                 placeholder="Destrinchar outra NFe"
                 maxlength="44"
                 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
@@ -289,7 +289,7 @@ const items = ref<BreadcrumbItem[]>([
               <UButton
                 class="cursor-pointer justify-center"
                 :disabled="!validacaoInput.valido"
-                size="lg"
+                size="md"
                 @click="consultarNota"
               >
                 Consultar
