@@ -88,7 +88,7 @@ const columns: any[] = [
         'code',
         {
           class:
-            'px-1.5 py-0.5 rounded dark:text-primary dark:border-neutral-700 text-gray-900 font-mono text-xs border border-primary'
+            'px-1.5 py-0.5 rounded text-primary dark:border-neutral-700 border border-gray-400 font-mono text-xs '
         },
         row.getValue('XML')
       )
@@ -279,7 +279,7 @@ const items = ref<BreadcrumbItem[]>([
             <div class="hidden items-center gap-2 md:flex">
               <UInput
                 v-model="notaFiscalInput"
-                class="w-99"
+                class="w-100"
                 size="md"
                 placeholder="Destrinchar outra NFe"
                 maxlength="44"
